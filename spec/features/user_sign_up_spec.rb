@@ -16,7 +16,7 @@ feature 'User should be able to sign up for a free account' do
       fill_in('Password', :with => 'helloworld')
       fill_in('Password confirmation', :with => 'helloworld')
     end
-    expect{ click_on("Sign up") }.to change{ User.count }.by(1)
+    expect{ click_button("Sign up") }.to change{ User.count }.by(1)
   end
   
 end
