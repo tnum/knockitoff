@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'Todo list items' do
 
   before do
-    @list  = general_list
+    @list  = (:list)
     3.times { @list.items.create }
   end
 

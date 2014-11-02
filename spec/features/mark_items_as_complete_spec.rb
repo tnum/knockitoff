@@ -3,8 +3,8 @@ require 'rails_helper'
 describe 'Completed Items' do
 
   before do
-    @user  = authenticated_user
-    @list  = general_list
+    @user  = (:user)
+    @list  = (:list)
     3.times { @list.items.create }
     sign_in @user
 
