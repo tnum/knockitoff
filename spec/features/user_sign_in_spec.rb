@@ -13,12 +13,14 @@ feature 'A user should be able to sign in' do
     within 'form' do
       fill_in('Email', :with => 'john@example.com')
       fill_in('Password', :with => 'helloworld')
+      click_on("Sign in")
     end
     expect(session[:user_id]).to_not be_nil
     # expect(current_path).to eq(user_session(@user))
   end
 
   scenario 'A user should be able to sign out' do
-    click_on('Sign out')
+    visit('/')
+    click_on('Log out')
   end
 end
