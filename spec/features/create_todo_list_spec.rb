@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'User can create a todo list' do
 
   before do
-    @user  = authenticated_user
+    @user = create(:user)
     @user_list = authenticated_list_user
     sign_in @user
   end
