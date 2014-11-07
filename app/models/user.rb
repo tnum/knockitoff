@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
 
-  has_one :list, dependent: :destroy
+  has_many :lists, dependent: :destroy
 
 
   # Include default devise modules. Others available are:
