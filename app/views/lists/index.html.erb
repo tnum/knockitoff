@@ -1,7 +1,8 @@
 
 
   <% @list.each do |list| %>
-    <%= link_to list.title %>
+    <h2><%= link_to list.title, list_url(@list) %></h2>
+    <p><%= list.description %></p>
   <% end %>
 
   <%= link_to "Create list", new_list_path %>
