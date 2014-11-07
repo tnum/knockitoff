@@ -3,8 +3,8 @@ require 'rails_helper'
 feature 'User can create a todo list' do
 
   before do
-    @user  = authenticated_user
-    @user_list = authenticated_list_user
+    @user = FactoryGirl.create(:user)
+    @user_list = create(:list)
     sign_in @user
   end
 

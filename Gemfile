@@ -16,6 +16,8 @@ end
 group :development, :test do
   gem 'rspec-rails'
   gem 'capybara'
+  gem 'database_cleaner'
+  gem 'factory_girl_rails', '~> 4.0'
 end
 
 # Use SCSS for stylesheets
@@ -50,4 +52,6 @@ gem 'spring',        group: :development
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+gem 'devise'
 
