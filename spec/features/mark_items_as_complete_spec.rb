@@ -18,3 +18,5 @@ describe 'Completed Items' do
     expect(page).to_not have_content("New todo item")
   end
 end
+
+# As a user, I should be able to mark to-do items as complete.

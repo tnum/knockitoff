@@ -1,8 +1,6 @@
-
-
-  <% @list.each do |list| %>
-    <h2><%= link_to list.title, list_url(@list) %></h2>
-    <p><%= list.description %></p>
-  <% end %>
-
-  <%= link_to "Create list", new_list_path %>
+<% if @list -%>
+<h2><%= link_to @list.title, list_path(@list) %></h2>
+<p><%= @list.description %></p>
+<% else -%>
+<%= link_to 'Create a new list', new_list_path %>
+<% end -%>

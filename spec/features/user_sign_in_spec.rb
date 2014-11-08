@@ -1,25 +1,26 @@
 require 'rails_helper'
 
-feature 'A user should be able to sign in' do
+feature 'An existing user' do
 
   before do
     @user = create(:user)
-  end
-
-  scenario 'Get to the sign in form' do
-    visit('/')
-    click_on("Sign in")
-    expect(current_path).to eq('/users/sign_in')
-  end
-
-  scenario 'Sign in via the user registration form' do
     visit('/users/sign_in')
-    within 'form' do
+    within "#new_user" do
       fill_in 'Email', with: @user.email
       fill_in 'Password', with: @user.password
       click_on("Sign in")
     end
-    expect(page).to have_content("Signed in successfully.")
-    # expect(current_path).to eq(user_session(@user))
   end
+
+  scenario 'logs in with their credentials' do
+    expect(page).to have_content("Signed in successfully.")
+  end
+
+  scenario 'then logs out' do
+    click_on("Log out")
+    expect(page).to have_content("Signed out successfully.")
+  end
+
 end
+
+# As a user, I should be able to sign in and out of Blocitoff.
