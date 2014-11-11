@@ -4,7 +4,6 @@ feature 'User should be able to sign up for a free account' do
   scenario 'Get to the account signup form' do
     visit('/')
     click_on("Sign up")
-    # expect(current_path).to eq(new_user_registration(@user))
     expect(current_path).to eq('/users/sign_up')
   end
 
@@ -17,7 +16,6 @@ feature 'User should be able to sign up for a free account' do
       fill_in('Password confirmation', :with => 'helloworld')
       click_button('Sign up')
     end
-    # expect{ click_button("Sign up") }.to change{ User.count }.by(1)
     expect(page).to have_content("Welcome! You have signed up successfully.")
   end
   
