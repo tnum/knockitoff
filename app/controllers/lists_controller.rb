@@ -1,15 +1,16 @@
 class ListsController < ApplicationController
 
   def index
-    @list = current_user.list
+    @list = List.all
+  end
+
+  def show
+    # @list = current_user.list
+    @list = List.find(params[:id])
   end
 
   def new
     @list = List.new
-  end
-
-  def show
-    @list = List.find(params[:id])
   end
 
   def edit
@@ -19,11 +20,11 @@ class ListsController < ApplicationController
   def create
     @list = List.new(lists_params)
     @list.user_id = current_user.id
-    @list.todos << Todo.new(todo_params)
-    current_user.list.todos << object
+    # @list.items << Item.new(item_params)
+    # current_user.list.items << object
 
     if @list.save
-      redirect_to lists_path, notice: "List saved successfully."
+      redirect_to list_path, notice: "List saved successfully."
     else
       flash[:error] = "Error creating list. Please try again."
       render :new
@@ -48,7 +49,7 @@ class ListsController < ApplicationController
 
     if @list.destroy
       flash[:notice] = "\"#{title}\" was deleted successfully."
-      redirect_to lists_path
+      redirect_to list_path
     else
       flash[:error] = "There was an error deleting the list"
       render :show

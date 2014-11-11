@@ -1,6 +1,6 @@
-<% if @list -%>
+<% if @list %>
 <h2><%= link_to @list.title, list_path(@list) %></h2>
 <p><%= @list.description %></p>
-<% else -%>
+<% else %>
 <%= link_to 'Create a new list', new_list_path %>
-<% end -%>
+<% end %>
