@@ -4,7 +4,6 @@ feature 'Creating todo items' do
 
   before do
     @user = create(:user)
-    @user_list = create(:list)
     visit('/users/sign_in')
     fill_in 'Email', with: @user.email
     fill_in 'Password', with: @user.password
@@ -24,13 +23,17 @@ feature 'Creating todo items' do
     # sees item
     expect(page).to have_content("My new todo item")
     # sees confirmation message
-    expect(page).to have_content("Successfully")
+    expect(page).to have_content("successfully")
   end
 
   scenario 'Unsucessfully' do
     # user clicks on add item
+    click_on('Add item')
     # clicks on save
+    click_on("Save")
     # sees error notification
+    expect(page).to have_content("error")
     # sees form or expected path
+    expect(current_path).to eq("/items/new")
   end
 end

@@ -1,5 +1,9 @@
 class ItemsController < ApplicationController
 
+  def index
+    @items = Item.all
+  end
+
   def new
     @item = Item.new
   end
@@ -8,9 +12,11 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
 
     if @item.save
+      flash[:notice] = "Item saved successfully"
       redirect_to root_path
     else
-      render :new
+      flash[:error] = "There was an error, please try again"
+      redirect_to new_item_path
     end
   end
 
