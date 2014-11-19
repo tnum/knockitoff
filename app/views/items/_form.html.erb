@@ -1,0 +1,3 @@
+<%= form_for item, url: {action: "index"} do |f| %>
+  <%= f.check_box :state, class: "state" %><%= item.description %>
+<% end %>

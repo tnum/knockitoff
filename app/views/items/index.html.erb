@@ -1,17 +1,12 @@
-<div class="items">
+<div class="todo-list">
 
 <% if current_user %>
 
   <%=link_to "Add item", new_item_path %>
 
-  <ul>
-  <% @items.each do |i| %>
-    <li>
-    <%= i.description %>
-    <input class="checkbox" type="checkbox">
-    </li>
-  <% end %>
-  </ul>
+  <div class="items">
+    <%= render partial: 'form', collection: @items, as: :item %>
+  </div>
 
 <% end %>
 

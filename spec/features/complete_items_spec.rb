@@ -12,19 +12,19 @@ feature 'Items completion' do
       click_button 'Sign in'
     end
 
-    3.times { create(:item) }
+     create(:item)
   end
 
   scenario 'Marking an item completed', :js => true do
     # check one of the checkboxes
     visit('/')
     within (".items") do
-      check('checkbox')
+      find(:css, '.state[value="1"]').set(true)
     end
     # expect item to be greyed out/slashed out
     expect(checked_field.count == 1)
     # expect same checkbox to be checked
-    expect(unchecked_field.count == 2)
+    expect(unchecked_field.count == 0)
   end
 
   scenario 'Unmarking an item' do
