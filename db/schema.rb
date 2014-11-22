@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20141114205621) do
     t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "state"
+    t.boolean  "state",       default: false
   end
 
   create_table "lists", force: true do |t|

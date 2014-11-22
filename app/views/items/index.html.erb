@@ -4,10 +4,33 @@
 
   <%=link_to "Add item", new_item_path %>
 
-  <div class="items">
-    <%= render partial: 'form', collection: @items, as: :item %>
+  <h2>To Do</h2>
+  <div id="todo-items">
+    <%= render partial: 'form', collection: @to_do_items, as: :item %>
+  </div>
+
+  <h2>Done</h2>
+  <div id="completed">
+    <%= render partial: 'form', collection: @completed_items, as: :item %>
   </div>
 
 <% end %>
 
 </div>
+
+<script>
+  var ready = function() {
+    
+    // within the  hhtml element that has a class .edit_item, find the element input which has the type checkbox
+    $('.edit_item input[type=checkbox]').click(function () {
+      // submits  the form
+      // this - represents the checkbox clicked over, go the the parent that is the element form
+      $(this).parent('form').submit();
+    });
+
+    // TODO: handle errors to unselect check box if something happens
+  };
+
+  $(document).ready(ready);
+  $(document).on('page:load', ready);
+</script>

@@ -1,10 +1,9 @@
 class ItemsController < ApplicationController
+  respond_to :html, :js
 
   def index
-    @items = Item.all
-  end
-
-  def show
+    @to_do_items = Item.where(state: false)
+    @completed_items = Item.where(state: true)
   end
 
   def new
@@ -23,10 +22,41 @@ class ItemsController < ApplicationController
     end
   end
 
+  def edit
+    @item = Item.find(item_params[:id])
+  end
+
+  def update
+    @item = Item.find(item_params[:id])
+    if @item.save
+      flash[:notice] = "Item completed"
+    else
+      flash[:error] = "There was an error, please try again"
+    end
+    respond_to do |format|
+      format.html { redirect_to root_path }
+    end
+  end
+
+  def destroy
+  end
+
+  def toggle
+    #mark the item as completed
+    @item = Item.find(params[:item_id])
+    @item.update_attribute(:state, !@item.state)
+    @to_do_items = Item.where(state: false)
+    @completed_items = Item.where(state: true)
+
+    respond_to do |format|
+      format.js {}
+    end
+  end
+
 end
 
 private
 
 def item_params
-  params.require(:item).permit(:description)
+  params.require(:item).permit(:description, :state)
 end
