@@ -18,21 +18,23 @@ feature 'Items completion' do
   scenario 'Marking an item completed', :js => true do
     # check one of the checkboxes
     visit('/')
-    within (".todo-items") do
+    within ("#todo-items") do
       find(:css, '.state[value="1"]').set(true)
     end
     # expect item to be greyed out/slashed out
-    find(:css, ".todo-items").should_not have_selector(".edit_item")
-    # expect same checkbox to be checked
-    #expect(unchecked_field.count == 0)
+    find(:css, "#completed").should have_selector(".edit_item")
+
+    within ("#completed") do
+      find("input[type='checkbox']").set(false)
+    end
+    # expect item to move to active list on top
+    find(:css, "#todo-items").should have_selector(".edit_item")
+    # expect same checkbox to be unchecked
+    #expect(unchecked_field.count == 1)
   end
 
-  scenario 'Unmarking an item' do
-    # uncheck one of the completed items
-    # find(checked_field).uncheck
-    # expect item to move to active list on top
-    # expect same checkbox to be unchecked
-    #expect(unchecked_field.count == 3)
+  scenario 'Unmarking an item', :js => true do
+    
   end
 end
 
