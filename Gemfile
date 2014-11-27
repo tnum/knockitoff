@@ -61,3 +61,5 @@ gem 'simple_form'
 
 gem 'foundation-rails'
 
+gem 'whenever', :require => false
+

@@ -20,6 +20,7 @@ feature 'A user should be able to sign in' do
       click_on("Sign in")
     end
     expect(page).to have_content("Signed in successfully.")
-    # expect(current_path).to eq(user_session(@user))
   end
 end
+
+# As a user, I should be able to sign into Knockitoff.

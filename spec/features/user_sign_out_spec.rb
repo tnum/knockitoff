@@ -19,3 +19,5 @@ feature 'A user should be able to log out' do
   end
 
 end
+
+# As a user, I should be able to sign out of Knocitoff.

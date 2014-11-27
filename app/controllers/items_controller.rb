@@ -14,12 +14,14 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
 
     if @item.save
+      @item.update_attribute(:days, 7)
       flash[:notice] = "Item saved successfully"
       redirect_to root_path
     else
       flash[:error] = "There was an error, please try again"
       redirect_to new_item_path
     end
+
   end
 
   def edit
