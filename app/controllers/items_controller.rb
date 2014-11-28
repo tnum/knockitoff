@@ -14,7 +14,6 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
 
     if @item.save
-      @item.update_attribute(:days, 7)
       flash[:notice] = "Item saved successfully"
       redirect_to root_path
     else
