@@ -6,7 +6,9 @@
 
   <h2>To Do</h2>
   <div id="todo-items">
+    
     <%= render partial: 'form', collection: @to_do_items, as: :item %>
+    
   </div>
 
   <h2>Done</h2>
@@ -21,7 +23,7 @@
 <script>
   var ready = function() {
     
-    // within the  hhtml element that has a class .edit_item, find the element input which has the type checkbox
+    // within the  html element that has a class .edit_item, find the element input which has the type checkbox
     $('.edit_item input[type=checkbox]').click(function () {
       // submits  the form
       // this - represents the checkbox clicked over, go the the parent that is the element form

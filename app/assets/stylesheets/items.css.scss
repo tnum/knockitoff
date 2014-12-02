@@ -1,3 +1,16 @@
 #completed {
-  .edit_item { text-decoration: line-through; }
+  .description { 
+    text-decoration: line-through; 
+    color: #888;
+  }
+  .created-at,
+  .remaining { color: #888; }
+}
+
+form.edit_item {
+  > div  { 
+    display: inline-block; 
+    padding: 0 15px;
+  }
+  .description { font-weight: bold; }
 }
