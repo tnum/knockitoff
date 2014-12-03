@@ -1,0 +1,18 @@
+// Because it will completely replace the affected list, is necessary to unbind all 'click' events
+$('.edit_item input[type=checkbox]').unbind('click');
+
+// Removes the current selection from the list
+$("#edit_item_<%= params[:item_id] %>").remove();
+
+// Replaces the affected list will all items
+<% if @item.state %>
+  $("#completed").html("<%= j (render partial: 'form', collection: @completed_items, as: :item) %>");
+<% else %>
+  $("#todo-items").html("<%= j (render partial: 'form', collection: @to_do_items, as: :item) %>");
+<% end %>
+
+// Bind everything again with click event
+$('.edit_item input[type=checkbox]').click(function () {
+  // submits  the form
+  $(this).parent('form').submit();
+});

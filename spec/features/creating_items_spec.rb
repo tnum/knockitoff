@@ -37,3 +37,5 @@ feature 'Creating todo items' do
     expect(current_path).to eq("/items/new")
   end
 end
+
+# As a signed in user, I should be able to create todo items.

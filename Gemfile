@@ -18,6 +18,8 @@ group :development, :test do
   gem 'capybara'
   gem 'database_cleaner'
   gem 'factory_girl_rails', '~> 4.0'
+  gem 'poltergeist'
+  gem 'phantomjs', :require => 'phantomjs/poltergeist'
 end
 
 # Use SCSS for stylesheets
@@ -58,4 +60,6 @@ gem 'devise'
 gem 'simple_form'
 
 gem 'foundation-rails'
+
+gem 'whenever', :require => false
 

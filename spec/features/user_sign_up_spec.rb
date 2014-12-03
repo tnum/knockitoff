@@ -21,3 +21,4 @@ feature 'User should be able to sign up for a free account' do
   
 end
 
+# As a user, I should be able to sign up for a free account by providing a user name, password and email address.
