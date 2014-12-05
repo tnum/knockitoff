@@ -12,6 +12,12 @@ class ItemsController < ApplicationController
 
   def edit
     @item = Item.find(params[:id])
+    if @item.editable?
+      flash[:notice] = "Amend to-do item"
+    else
+      flash[:error] = "Sorry, this item can not be completed"
+      redirect_to root_path
+    end
   end
 
   def create
@@ -30,7 +36,7 @@ class ItemsController < ApplicationController
   def update
     @item = Item.find(params[:id])
     if @item.save
-      flash[:notice] = "Item completed"
+      flash[:notice] = "Item saved"
     else
       flash[:error] = "There was an error, please try again"
     end
