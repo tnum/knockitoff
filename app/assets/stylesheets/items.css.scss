@@ -1,3 +1,32 @@
-#completed {
-  .edit_item { text-decoration: line-through; }
+header { background: #333; }
+
+main {
+  background: url("Purple-Bliss.jpg");
+  background-attachment: fixed;
+  padding: 60px 0;
+  min-height: 600px;
+  .panel { text-align: center; }
+  .todo-list {
+    background: #fff;
+    opacity: 0.85;
+    padding: 15px;
+    border: 1px solid #EFF7FF;
+    input.state { margin: 0 15px; }
+    .item-description { 
+      display: inline-block; 
+      width: 50%;
+    }
+    .days-left { display: inline-block; }
+  }
+  #completed {
+    .item-description { 
+      text-decoration: line-through; 
+      color: #666;
+      font-style: italic;
+    }
+    .days-left { 
+      color: #666; 
+      font-style: italic;
+    }
+  }
 }
