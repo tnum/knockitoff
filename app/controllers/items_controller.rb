@@ -10,16 +10,6 @@ class ItemsController < ApplicationController
     @item = Item.new
   end
 
-  def edit
-    @item = Item.find(params[:id])
-    if @item.editable?
-      flash[:notice] = "Amend to-do item"
-    else
-      flash[:error] = "Sorry, this item can not be completed"
-      redirect_to root_path
-    end
-  end
-
   def create
     @item = Item.new(item_params)
 
@@ -33,14 +23,31 @@ class ItemsController < ApplicationController
 
   end
 
+  def edit
+    @item = Item.where(state: false).find(params[:id])
+    if @item.recent?
+      flash[:notice] = "Amend to-do item"
+    else
+      flash[:error] = "Sorry, this item can not be completed"
+      redirect_to root_path
+    end
+  end
+
+   def toggle
+    #mark the item as completed
+    @item = Item.find(params[:item_id])
+    @item.update_attribute(:state, !@item.state)
+    @to_do_items = Item.where(state: false)
+    @completed_items = Item.where(state: true)
+
+    respond_to do |format|
+      format.js {}
+    end
+  end
+
   def update
     @item = Item.find(params[:id])
-    if @item.save
-      flash[:notice] = "Item saved"
-    else
-      flash[:error] = "There was an error, please try again"
-    end
-
+    
     if @item.update_attributes(item_params)
       redirect_to root_path
     else
@@ -53,18 +60,6 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-  end
-
-  def toggle
-    #mark the item as completed
-    @item = Item.find(params[:item_id])
-    @item.update_attribute(:state, !@item.state)
-    @to_do_items = Item.where(state: false)
-    @completed_items = Item.where(state: true)
-
-    respond_to do |format|
-      format.js {}
-    end
   end
 
 end

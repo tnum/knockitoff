@@ -2,7 +2,7 @@
   <%= f.check_box :state, class: "state" %>
   <div class="item-description"><%= item.description %></div> 
   <%= 7 - (Time.now.to_date - item.created_at.to_date).to_i %> days remaining 
-  <% if item.editable? %>
+  <% if item.recent? %>
   <div class="edit"><% %><%= link_to "Edit", edit_item_path(item.id) %></div>
   <% end %>
 <% end %> 

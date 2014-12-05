@@ -16,18 +16,26 @@ main {
       display: inline-block; 
       width: 50%;
     }
-    .edit,
     .days-left { display: inline-block; }
+    .edit {
+      display: inline-block;
+      padding-left: 2%;
+      a { 
+        color: #888;
+        &:hover { color: #008cba; }
+      }
+    }
   }
   #completed {
     .item-description { 
       text-decoration: line-through; 
-      color: #666;
+      color: #888;
       font-style: italic;
     }
     .days-left { 
-      color: #666; 
+      color: #888; 
       font-style: italic;
     }
+    .edit { display: none; }
   }
 }
