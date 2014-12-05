@@ -1,4 +1,8 @@
 <%= form_for item, url: item_toggle_path(item.id), remote: true do |f| %>
-  <%= f.check_box :state, class: "state" %><div class="item-description"><%= item.description %></div> <%= 7 - (Time.now.to_date - item.created_at.to_date).to_i %> days remaining 
-  <div class="edit"><%= link_to "Edit", edit_item_path(item.id) %></div>
+  <%= f.check_box :state, class: "state" %>
+  <div class="item-description"><%= item.description %></div> 
+  <%= 7 - (Time.now.to_date - item.created_at.to_date).to_i %> days remaining 
+  <% if item.editable? %>
+  <div class="edit"><% %><%= link_to "Edit", edit_item_path(item.id) %></div>
+  <% end %>
 <% end %> 

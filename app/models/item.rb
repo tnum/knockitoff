@@ -6,4 +6,8 @@ class Item < ActiveRecord::Base
     # update_attribute(:days, time_remaining)
   # end
 
+  def editable?
+    created_at > 1.hour.ago
+  end
+
 end
