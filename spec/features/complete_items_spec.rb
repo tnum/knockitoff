@@ -12,7 +12,7 @@ feature 'Items completion' do
       click_button 'Sign in'
     end
 
-     create(:item)
+     create(:item, user: @user)
   end
 
   scenario 'Marking an item completed', :js => true do

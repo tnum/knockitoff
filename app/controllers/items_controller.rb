@@ -2,16 +2,18 @@ class ItemsController < ApplicationController
   respond_to :html, :js
 
   def index
-    @to_do_items = Item.where(state: false)
-    @completed_items = Item.where(state: true)
+    @to_do_items = Item.where(state: false).where(user_id: current_user)
+    @completed_items = Item.where(state: true).where(user_id: current_user)
   end
 
   def new
     @item = Item.new
+    authorize @item
   end
 
   def create
-    @item = Item.new(item_params)
+    @item = current_user.items.build(item_params)
+    authorize @item
 
     if @item.save
       flash[:notice] = "Item saved successfully"
@@ -25,6 +27,8 @@ class ItemsController < ApplicationController
 
   def edit
     @item = Item.where(state: false).find(params[:id])
+    authorize @item
+
     if @item.recent?
       flash[:notice] = "Amend to-do item"
     else
@@ -37,8 +41,8 @@ class ItemsController < ApplicationController
     #mark the item as completed
     @item = Item.find(params[:item_id])
     @item.update_attribute(:state, !@item.state)
-    @to_do_items = Item.where(state: false)
-    @completed_items = Item.where(state: true)
+    @to_do_items = Item.where(state: false).where(user_id: current_user)
+    @completed_items = Item.where(state: true).where(user_id: current_user)
 
     respond_to do |format|
       format.js {}

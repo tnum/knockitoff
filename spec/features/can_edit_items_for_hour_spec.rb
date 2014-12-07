@@ -12,7 +12,7 @@ feature 'Items Edit' do
       click_button 'Sign in'
     end
     
-    create(:item)
+    create(:item, user: @user)
   end
 
   scenario 'A user can edit a recent' do
@@ -24,7 +24,7 @@ feature 'Items Edit' do
 
   scenario 'Items older than an hour can not be edited' do
     
-    create(:item, created_at: 2.hours.ago)
+    create(:item, created_at: 2.hours.ago, user: @user)
     
     visit('/')
     within ("#todo-items") do
