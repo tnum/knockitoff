@@ -6,6 +6,9 @@ feature 'User is authorised' do
     @user  = create(:user)
     @user2  = create(:user)
 
+    3.times { create(:item, user: @user) }
+    3.times { create(:item, user: @user2) }
+
     visit('/users/sign_in')
     fill_in 'Email', with: @user.email
     fill_in 'Password', with: @user.password
@@ -14,8 +17,6 @@ feature 'User is authorised' do
       click_button 'Sign in'
     end
 
-     3.times { create(:item, user: @user) }
-     3.times { create(:item, user: @user2) }
   end
 
   scenario 'When logged-in can see their todo items' do

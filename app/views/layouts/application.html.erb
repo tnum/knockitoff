@@ -30,6 +30,7 @@
               <ul class="right">
                 <% if current_user %>
                   <li><%= link_to "Log out", destroy_user_session_path, :method => :delete %></li>
+                  <li id="current-user"><%= link_to (current_user.name), current_user %></li>
                 <% else %>
                   <li><%= link_to "Sign in", new_user_session_path %></li> 
                   <li><%= link_to "Sign up", new_user_registration_path %></li>
@@ -60,6 +61,11 @@
               <a href="#" class="close">&times;</a>
             </div>
           <% end %>
+          <div class="avatar">
+            <% if current_user %>
+              <%= image_tag(current_user.avatar.thumb.url) if current_user.avatar? %>
+            <% end %>
+          </div>
 
           <%= yield %>
         </div>
