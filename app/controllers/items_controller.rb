@@ -10,6 +10,10 @@ class ItemsController < ApplicationController
     @item = Item.new
   end
 
+  def edit
+    @item = Item.find(params[:id])
+  end
+
   def create
     @item = Item.new(item_params)
 
@@ -23,20 +27,23 @@ class ItemsController < ApplicationController
 
   end
 
-  def edit
-    @item = Item.find(item_params[:id])
-  end
-
   def update
-    @item = Item.find(item_params[:id])
+    @item = Item.find(params[:id])
     if @item.save
       flash[:notice] = "Item completed"
     else
       flash[:error] = "There was an error, please try again"
     end
-    respond_to do |format|
-      format.html { redirect_to root_path }
+
+    if @item.update_attributes(item_params)
+      redirect_to root_path
+    else
+      flash[:error] = "Error, please try again"
+      render :edit
     end
+    #respond_to do |format|
+     # format.html { redirect_to root_path }
+    #end
   end
 
   def destroy
@@ -59,5 +66,5 @@ end
 private
 
 def item_params
-  params.require(:item).permit(:description, :state)
+  params.require(:item).permit(:description, :status)
 end
