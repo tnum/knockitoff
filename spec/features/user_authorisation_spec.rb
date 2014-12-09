@@ -18,14 +18,14 @@ feature 'User is authorised' do
      3.times { create(:item, user: @user2) }
   end
 
-  scenario 'can only see their todo items when logged in' do
+  scenario 'When logged-in can see their todo items' do
     visit('/')
      within ("#todo-items") do
       expect( page ).to have_selector(".edit_item", count: 3 )
     end
   end
 
-  scenario 'when user logs out they can not see the todo items' do
+  scenario 'when logged-out user can not see any todo items' do
     click_link('Log out')
     visit('/')
     expect( page ).to_not have_selector("#todo-items")
