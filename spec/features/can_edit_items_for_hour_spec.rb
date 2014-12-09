@@ -18,7 +18,6 @@ feature 'Items Edit' do
 
   scenario 'A user edits item' do
     within ("#todo-items") do
-      #find(:css, '#edit_item_1').should have_selector(".edit")
       click_link("Edit")
     end
     expect(page).to have_content('Description')
