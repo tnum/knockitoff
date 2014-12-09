@@ -88,6 +88,8 @@ GEM
       multi_json (~> 1.0)
       websocket-driver (>= 0.2.0)
     polyglot (0.3.5)
+    pundit (0.3.0)
+      activesupport (>= 3.0.0)
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -189,6 +191,7 @@ DEPENDENCIES
   pg
   phantomjs
   poltergeist
+  pundit
   rails (= 4.1.4)
   rails_12factor
   rspec-rails

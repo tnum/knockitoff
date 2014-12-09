@@ -63,3 +63,5 @@ gem 'foundation-rails'
 
 gem 'whenever', :require => false
 
+gem 'pundit'
+
