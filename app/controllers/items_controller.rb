@@ -54,9 +54,7 @@ class ItemsController < ApplicationController
       flash[:error] = "Error, please try again"
       render :edit
     end
-    #respond_to do |format|
-     # format.html { redirect_to root_path }
-    #end
+    
   end
 
   def destroy
