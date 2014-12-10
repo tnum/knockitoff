@@ -5,6 +5,10 @@ feature 'Items older than 7 days are deleted' do
 
   before do
     @user  = create(:user)
+
+    @item2 = create(:item, created_at: 7.days.ago, user: @user)
+    @item = create(:item, user: @user)
+
     visit('/users/sign_in')
     fill_in 'Email', with: @user.email
     fill_in 'Password', with: @user.password
@@ -12,10 +16,6 @@ feature 'Items older than 7 days are deleted' do
     within 'form' do
       click_button 'Sign in'
     end
-
-    @item2 = create(:item, created_at: 7.days.ago, user: @user)
-    @item = create(:item, user: @user)
-    
   end
 
   scenario 'Two items are initially on the page' do

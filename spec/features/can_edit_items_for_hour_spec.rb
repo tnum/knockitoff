@@ -4,7 +4,7 @@ feature 'Items Edit' do
 
   before do
     @user  = create(:user)
-    create(:item)
+    create(:item, user: @user)
 
     visit('/users/sign_in')
     fill_in 'Email', with: @user.email
@@ -14,12 +14,11 @@ feature 'Items Edit' do
       click_button 'Sign in'
     end
 
-    create(:item, user: @user)
   end
 
   scenario 'A user edits item' do
     within ("#todo-items") do
-      click_link("Edit")
+      click_link('Edit')
     end
     expect(page).to have_content('Description')
     click_button 'Save'

@@ -4,6 +4,9 @@ feature 'Items completion' do
 
   before do
     @user  = create(:user)
+
+    create(:item, user: @user)
+    
     visit('/users/sign_in')
     fill_in 'Email', with: @user.email
     fill_in 'Password', with: @user.password
@@ -11,8 +14,6 @@ feature 'Items completion' do
     within 'form' do
       click_button 'Sign in'
     end
-
-     create(:item, user: @user)
   end
 
   scenario 'Marking an item completed', :js => true do

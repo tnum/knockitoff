@@ -1,0 +1,11 @@
+<h1><%= @user.name %></h1>
+
+<% if @user.avatar? %>
+  <%= image_tag @user.avatar.profile.url %>
+<% end %>
+
+<div class="small-2 large-4 columns">Member for <%= time_ago_in_words(@user.created_at) %></div>
+
+<div class="small-2 large-4 columns" id="edit-details">
+  <%= link_to "Edit profile", edit_user_registration_path %>
+</div>
