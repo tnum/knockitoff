@@ -1,7 +1,7 @@
 header { background: #333; }
 
 main {
-  background: url("Purple-Bliss.jpg");
+  background: asset-url("Purple-Bliss.jpg");
   background-attachment: fixed;
   padding: 60px 0;
   min-height: 600px;
